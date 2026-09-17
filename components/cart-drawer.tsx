@@ -1,0 +1,209 @@
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Trash2, Plus, Minus, MessageCircle } from "lucide-react";
+import { CartItem } from "@/types/product";
+import { formatFCFA } from "@/lib/utils";
+import { WHATSAPP_NUMBER } from "@/data/products";
+
+interface CartDrawerProps {
+  open: boolean;
+  onClose: () => void;
+  items: CartItem[];
+  onRemove: (id: string) => void;
+  onQty: (id: string, delta: number) => void;
+  onClear: () => void;
+}
+
+export default function CartDrawer({
+  open,
+  onClose,
+  items,
+  onRemove,
+  onQty,
+  onClear,
+}: CartDrawerProps) {
+  const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+
+  const buildWhatsAppLink = () => {
+    if (items.length === 0) return "#";
+
+    const lines: string[] = [];
+    lines.push("🛒 *NOUVELLE COMMANDE — El Bach le Boss 2*");
+    lines.push("");
+    lines.push("Bonjour, je souhaite commander les engins suivants :");
+    lines.push("");
+
+    items.forEach((item, index) => {
+      lines.push(`*${index + 1}. ${item.name}*`);
+      lines.push(`   • Marque : ${item.brand}`);
+      lines.push(`   • État : ${item.condition}`);
+      lines.push(`   • Année : ${item.year}`);
+      lines.push(`   • Prix unitaire : ${formatFCFA(item.price)}`);
+      lines.push(`   • Quantité : ${item.quantity}`);
+      lines.push(`   • Sous-total : ${formatFCFA(item.price * item.quantity)}`);
+      lines.push("");
+    });
+
+    lines.push("━━━━━━━━━━━━━━━━━━━━");
+    lines.push(`💰 *TOTAL : ${formatFCFA(total)}*`);
+    lines.push("━━━━━━━━━━━━━━━━━━━━");
+    lines.push("");
+    lines.push("Merci de me confirmer la disponibilité et les modalités de livraison.");
+
+    const message = encodeURIComponent(lines.join("\n"));
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+  };
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <>
+          {/* Overlay */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm"
+          />
+
+          {/* Drawer */}
+          <motion.aside
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            className="fixed right-0 top-0 z-50 flex h-full w-full max-w-md flex-col border-l border-base-border bg-base"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-base-border p-5">
+              <div>
+                <h2 className="text-lg font-bold text-text">Ma Sélection</h2>
+                <p className="text-xs text-text-muted">
+                  {items.length} article{items.length > 1 ? "s" : ""}
+                </p>
+              </div>
+              <button
+                onClick={onClose}
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-base-border bg-base-card transition hover:border-gold-light"
+                aria-label="Fermer"
+              >
+                <X className="h-4 w-4 text-text" />
+              </button>
+            </div>
+
+            {/* Liste */}
+            <div className="flex-1 overflow-y-auto p-5">
+              {items.length === 0 ? (
+                <div className="flex h-full flex-col items-center justify-center text-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-base-border bg-base-card">
+                    <Trash2 className="h-6 w-6 text-text-muted" />
+                  </div>
+                  <p className="mt-4 text-sm font-semibold text-text">
+                    Votre sélection est vide
+                  </p>
+                  <p className="mt-1 text-xs text-text-muted">
+                    Ajoutez des véhicules ou motos pour commander.
+                  </p>
+                </div>
+              ) : (
+                <ul className="space-y-3">
+                  {items.map((item) => (
+                    <motion.li
+                      key={item.id}
+                      layout
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 20 }}
+                      className="flex gap-3 rounded-xl border border-base-border bg-base-card p-3"
+                    >
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="h-20 w-20 flex-shrink-0 rounded-lg object-cover"
+                      />
+                      <div className="flex flex-1 flex-col">
+                        <div className="flex items-start justify-between gap-2">
+                          <div>
+                            <p className="text-[10px] uppercase tracking-wider text-gold-light">
+                              {item.brand}
+                            </p>
+                            <p className="line-clamp-1 text-sm font-bold text-text">
+                              {item.name}
+                            </p>
+                          </div>
+                          <button
+                            onClick={() => onRemove(item.id)}
+                            className="text-text-muted transition hover:text-rose-400"
+                            aria-label="Retirer"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </button>
+                        </div>
+
+                        <div className="mt-auto flex items-center justify-between pt-2">
+                          <div className="flex items-center gap-2 rounded-lg border border-base-border bg-base px-2 py-1">
+                            <button
+                              onClick={() => onQty(item.id, -1)}
+                              className="text-text-muted transition hover:text-gold-light"
+                              aria-label="Diminuer"
+                            >
+                              <Minus className="h-3 w-3" />
+                            </button>
+                            <span className="min-w-4 text-center text-xs font-bold text-text">
+                              {item.quantity}
+                            </span>
+                            <button
+                              onClick={() => onQty(item.id, 1)}
+                              className="text-text-muted transition hover:text-gold-light"
+                              aria-label="Augmenter"
+                            >
+                              <Plus className="h-3 w-3" />
+                            </button>
+                          </div>
+                          <p className="text-sm font-extrabold text-gold-light">
+                            {formatFCFA(item.price * item.quantity)}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            {/* Footer */}
+            {items.length > 0 && (
+              <div className="border-t border-base-border bg-base-card/50 p-5 backdrop-blur">
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="text-sm text-text-muted">Total</span>
+                  <span className="text-2xl font-extrabold text-gold-light">
+                    {formatFCFA(total)}
+                  </span>
+                </div>
+
+                <a
+                  href={buildWhatsAppLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-gold-gradient py-3.5 text-sm font-bold text-base shadow-gold transition hover:brightness-110 active:scale-[0.98]"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Commander via WhatsApp
+                </a>
+
+                <button
+                  onClick={onClear}
+                  className="mt-3 w-full rounded-xl border border-base-border py-2.5 text-xs font-semibold text-text-muted transition hover:border-rose-500/50 hover:text-rose-400"
+                >
+                  Vider la sélection
+                </button>
+              </div>
+            )}
+          </motion.aside>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}
