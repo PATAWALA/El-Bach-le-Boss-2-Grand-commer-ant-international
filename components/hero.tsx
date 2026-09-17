@@ -1,6 +1,12 @@
 "use client";
 
-import { ArrowRight, ShieldCheck, Truck, BadgeCheck, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  ShieldCheck,
+  Truck,
+  BadgeCheck,
+  Sparkles,
+} from "lucide-react";
 
 interface HeroProps {
   onExplore: () => void;
@@ -8,7 +14,10 @@ interface HeroProps {
 
 export default function Hero({ onExplore }: HeroProps) {
   return (
-    <section className="relative min-h-[90vh] overflow-hidden border-b border-[#334155]">
+    <section
+      className="relative min-h-[90vh] overflow-hidden border-b"
+      style={{ borderColor: "#334155" }}
+    >
       {/* ============================================
           IMAGE DE FOND — Véhicule premium
           ============================================ */}
@@ -19,7 +28,7 @@ export default function Hero({ onExplore }: HeroProps) {
           className="h-full w-full object-cover object-center"
           loading="eager"
         />
-        {/* Overlay gauche → texte lisible */}
+        {/* Overlay horizontal → texte lisible à gauche */}
         <div
           className="absolute inset-0"
           style={{
@@ -50,7 +59,7 @@ export default function Hero({ onExplore }: HeroProps) {
       />
 
       {/* ============================================
-          CONTENU — Animations CSS pures (Framer Motion retiré pour la fiabilité)
+          CONTENU
           ============================================ */}
       <div className="relative mx-auto flex min-h-[90vh] max-w-7xl items-center px-4 py-20 sm:px-6 lg:px-8">
         <div className="max-w-3xl animate-[heroFadeIn_0.8s_ease-out_both]">
@@ -87,19 +96,18 @@ export default function Hero({ onExplore }: HeroProps) {
             </span>
           </h1>
 
-          {/* Description — TEXTE FORCÉ EN BLANC VISIBLE */}
+          {/* Description — TEXTE FORCÉ VISIBLE */}
           <p
             className="mt-6 max-w-2xl text-base leading-relaxed sm:text-lg"
             style={{ color: "#CBD5E1" }}
           >
-            El Bach le Boss 2 & Grand Commerçant International vous propose une
-            sélection premium de véhicules et motos, neufs et d'occasion.
-            Qualité vérifiée, prix transparents, paiement sécurisé et
-            satisfaction garantie.
+            Auto Confort vous propose une sélection premium de véhicules et
+            motos, neufs et d'occasion. Qualité vérifiée, prix transparents,
+            paiement sécurisé et satisfaction garantie.
           </p>
 
           {/* ============================================
-              BOUTONS — VISIBILITÉ GARANTIE
+              BOUTONS D'ACTION
               ============================================ */}
           <div className="mt-10 flex flex-wrap gap-4">
             {/* Bouton principal — Or plein */}
@@ -123,16 +131,19 @@ export default function Hero({ onExplore }: HeroProps) {
             {/* Bouton secondaire — Contour or */}
             <a
               href="#contact"
-              className="inline-flex items-center gap-2.5 rounded-xl border-2 px-7 py-4 text-base font-extrabold uppercase tracking-wide backdrop-blur-md transition-all duration-300 hover:bg-[#D4AF37] active:scale-95"
+              className="inline-flex items-center gap-2.5 rounded-xl border-2 px-7 py-4 text-base font-extrabold uppercase tracking-wide backdrop-blur-md transition-all duration-300 active:scale-95"
               style={{
                 borderColor: "#D4AF37",
                 backgroundColor: "rgba(15, 23, 42, 0.85)",
                 color: "#D4AF37",
               }}
               onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#D4AF37";
                 e.currentTarget.style.color = "#0F172A";
               }}
               onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor =
+                  "rgba(15, 23, 42, 0.85)";
                 e.currentTarget.style.color = "#D4AF37";
               }}
             >
@@ -140,7 +151,9 @@ export default function Hero({ onExplore }: HeroProps) {
             </a>
           </div>
 
-          {/* Trust badges */}
+          {/* ============================================
+              TRUST BADGES
+              ============================================ */}
           <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-3">
             {[
               { icon: ShieldCheck, label: "Paiement sécurisé" },

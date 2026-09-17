@@ -10,8 +10,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "El Bach le Boss 2 — Véhicules & Motos de Qualité",
-    template: "%s | El Bach le Boss 2",
+    default: "Auto Confort — Véhicules & Motos de Qualité",
+    template: "%s | Auto Confort",
   },
   description:
     "Découvrez une sélection premium de véhicules et motos neufs et d'occasion. Qualité vérifiée, prix transparents, commande rapide via WhatsApp.",
@@ -21,23 +21,22 @@ export const metadata: Metadata = {
     "voiture neuve",
     "voiture occasion",
     "moto neuve",
-    "El Bach le Boss 2",
-    "Grand commerçant international",
+    "Auto Confort",
     "Toyota",
     "Mercedes",
     "Yamaha",
     "Honda",
   ],
-  authors: [{ name: "El Bach le Boss 2" }],
-  creator: "El Bach le Boss 2",
-  publisher: "El Bach le Boss 2",
-  metadataBase: new URL("https://elbachboss.com"),
+  authors: [{ name: "Auto Confort" }],
+  creator: "Auto Confort",
+  publisher: "Auto Confort",
+  metadataBase: new URL("https://autoconfort.com"),
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://elbachboss.com",
-    siteName: "El Bach le Boss 2",
-    title: "El Bach le Boss 2 — Véhicules & Motos de Qualité",
+    url: "https://autoconfort.com",
+    siteName: "Auto Confort",
+    title: "Auto Confort — Véhicules & Motos de Qualité",
     description:
       "Sélection premium de véhicules et motos neufs et d'occasion. Qualité vérifiée, prix transparents.",
     images: [
@@ -45,13 +44,13 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "El Bach le Boss 2",
+        alt: "Auto Confort",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "El Bach le Boss 2 — Véhicules & Motos de Qualité",
+    title: "Auto Confort — Véhicules & Motos de Qualité",
     description:
       "Sélection premium de véhicules et motos neufs et d'occasion.",
     images: ["/og-image.jpg"],
