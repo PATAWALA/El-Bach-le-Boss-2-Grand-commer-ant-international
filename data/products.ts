@@ -60,7 +60,7 @@ export const products: Product[] = [
     status: "En arrivage",
     price: 18900000,
     image:
-      "https://images.unsplash.com/photo-1631281495045-2d5b0f9c6d9b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1617469767053-d3b523a0b982?auto=format&fit=crop&w=1200&q=80",
     year: 2023,
     km: 0,
     fuel: "Hybride",
