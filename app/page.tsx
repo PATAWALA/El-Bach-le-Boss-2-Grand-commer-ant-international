@@ -8,6 +8,10 @@ import Hero from "@/components/hero";
 import Filters from "@/components/filters";
 import ProductCard from "@/components/product-card";
 import CartDrawer from "@/components/cart-drawer";
+import ServicesSection from "@/components/services-section";
+import TerrainsSection from "@/components/terrains-section";
+import AccompagnementSection from "@/components/accompagnement-section";
+import ZonesSection from "@/components/zones-section";
 import Footer from "@/components/footer";
 import { products } from "@/data/products";
 import { Product, CartItem, ProductCategory } from "@/types/product";
@@ -97,18 +101,28 @@ export default function Home() {
       <Hero onExplore={scrollToCatalog} />
 
       {/* ============================================
-          CATALOGUE
+          CATALOGUE VÉHICULES & MOTOS
           ============================================ */}
       <section
         id="catalogue"
         className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
       >
         <div className="mb-8">
+          <span
+            className="inline-block rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-widest"
+            style={{
+              borderColor: "rgba(212, 175, 55, 0.4)",
+              backgroundColor: "rgba(212, 175, 55, 0.1)",
+              color: "#D4AF37",
+            }}
+          >
+            Catalogue
+          </span>
           <h2
-            className="text-3xl font-black sm:text-4xl"
+            className="mt-4 text-3xl font-black sm:text-4xl"
             style={{ color: "#F8FAFC" }}
           >
-            Notre Catalogue
+            Véhicules & Motos
           </h2>
           <p className="mt-2" style={{ color: "#94A3B8" }}>
             {filtered.length} engin{filtered.length > 1 ? "s" : ""} disponible
@@ -155,7 +169,27 @@ export default function Home() {
       </section>
 
       {/* ============================================
-          FOOTER — Composant séparé
+          SERVICES
+          ============================================ */}
+      <ServicesSection />
+
+      {/* ============================================
+          TERRAINS
+          ============================================ */}
+      <TerrainsSection />
+
+      {/* ============================================
+          ACCOMPAGNEMENT
+          ============================================ */}
+      <AccompagnementSection />
+
+      {/* ============================================
+          ZONES D'INTERVENTION
+          ============================================ */}
+      <ZonesSection />
+
+      {/* ============================================
+          FOOTER
           ============================================ */}
       <Footer />
 
@@ -224,6 +258,12 @@ export default function Home() {
                       src={quickView.image}
                       alt={quickView.name}
                       className="h-48 w-full object-cover sm:h-64 md:h-80"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        target.onerror = null;
+                        target.src =
+                          "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=80";
+                      }}
                     />
                     <div
                       className="absolute inset-0"

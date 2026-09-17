@@ -11,6 +11,16 @@ interface NavbarProps {
   onSearchChange: (v: string) => void;
 }
 
+// Liens de navigation communs
+const NAV_LINKS = [
+  { label: "Véhicules", href: "#catalogue" },
+  { label: "Terrains", href: "#terrains" },
+  { label: "Services", href: "#services" },
+  { label: "Accompagnement", href: "#accompagnement" },
+  { label: "Zones", href: "#zones" },
+  { label: "Contact", href: "#contact" },
+];
+
 export default function Navbar({
   cartCount,
   onCartClick,
@@ -24,16 +34,15 @@ export default function Navbar({
       className="sticky top-0 z-40 w-full border-b backdrop-blur-xl"
       style={{
         borderColor: "#334155",
-        backgroundColor: "rgba(15, 23, 42, 0.85)",
+        backgroundColor: "rgba(15, 23, 42, 0.9)",
       }}
     >
+      {/* ============================================
+          BARRE PRINCIPALE
+          ============================================ */}
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-3 sm:gap-4 sm:px-6 lg:px-8">
-        {/* ============================================
-            LOGO — Auto Confort (AC)
-            Nom TOUJOURS visible, même sur mobile
-            ============================================ */}
+        {/* ---------- LOGO ---------- */}
         <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-          {/* Carré or avec "AC" */}
           <div
             className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl sm:h-10 sm:w-10"
             style={{
@@ -50,7 +59,6 @@ export default function Navbar({
             </span>
           </div>
 
-          {/* Texte — Nom + Slogan */}
           <div className="flex min-w-0 flex-col leading-tight">
             <p
               className="truncate text-xs font-bold sm:text-sm md:text-base"
@@ -67,9 +75,7 @@ export default function Navbar({
           </div>
         </div>
 
-        {/* ============================================
-            RECHERCHE DESKTOP
-            ============================================ */}
+        {/* ---------- RECHERCHE DESKTOP ---------- */}
         <div className="relative hidden max-w-md flex-1 md:block">
           <Search
             className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"
@@ -98,11 +104,9 @@ export default function Navbar({
           />
         </div>
 
-        {/* ============================================
-            ACTIONS — Panier + Menu mobile
-            ============================================ */}
+        {/* ---------- ACTIONS ---------- */}
         <div className="flex flex-shrink-0 items-center gap-2">
-          {/* Bouton panier */}
+          {/* Panier */}
           <button
             onClick={onCartClick}
             className="relative flex h-9 w-9 items-center justify-center rounded-xl border transition hover:border-[#D4AF37] sm:h-10 sm:w-10"
@@ -136,7 +140,7 @@ export default function Navbar({
             </AnimatePresence>
           </button>
 
-          {/* Bouton menu mobile */}
+          {/* Menu mobile */}
           <button
             onClick={() => setMobileOpen((v) => !v)}
             className="flex h-9 w-9 items-center justify-center rounded-xl border transition sm:h-10 sm:w-10 md:hidden"
@@ -162,7 +166,34 @@ export default function Navbar({
       </div>
 
       {/* ============================================
-          RECHERCHE MOBILE (dépliable)
+          MENU SECONDAIRE — DESKTOP
+          ============================================ */}
+      <nav
+        className="hidden border-t md:block"
+        style={{ borderColor: "#334155" }}
+      >
+        <div className="mx-auto flex max-w-7xl items-center gap-0.5 px-4 sm:px-6 lg:px-8">
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="border-b-2 border-transparent px-3 py-3 text-sm font-semibold transition hover:border-[#D4AF37]"
+              style={{ color: "#94A3B8" }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.color = "#D4AF37")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color = "#94A3B8")
+              }
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      {/* ============================================
+          MENU MOBILE — RECHERCHE + LIENS
           ============================================ */}
       <AnimatePresence>
         {mobileOpen && (
@@ -174,6 +205,7 @@ export default function Navbar({
             style={{ borderColor: "#334155" }}
           >
             <div className="p-4">
+              {/* Recherche */}
               <div className="relative">
                 <Search
                   className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"
@@ -192,6 +224,26 @@ export default function Navbar({
                   }}
                 />
               </div>
+
+              {/* Liens */}
+              <nav className="mt-4 flex flex-col gap-1">
+                {NAV_LINKS.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center justify-between rounded-lg border px-3 py-3 text-sm font-semibold transition hover:border-[#D4AF37]"
+                    style={{
+                      color: "#F8FAFC",
+                      borderColor: "#334155",
+                      backgroundColor: "#1E293B",
+                    }}
+                  >
+                    {link.label}
+                    <span style={{ color: "#D4AF37" }}>→</span>
+                  </a>
+                ))}
+              </nav>
             </div>
           </motion.div>
         )}
