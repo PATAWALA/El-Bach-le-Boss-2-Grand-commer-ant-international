@@ -21,9 +21,9 @@ export default function Hero({ onExplore }: HeroProps) {
           loading="eager"
           fetchPriority="high"
         />
-        {/* Overlay dégradé sombre pour lisibilité */}
-        <div className="absolute inset-0 bg-gradient-to-r from-base via-base/90 to-base/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-base via-transparent to-base/40" />
+        {/* Overlay renforcé pour meilleur contraste */}
+        <div className="absolute inset-0 bg-gradient-to-r from-base via-base/95 to-base/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-base via-base/40 to-base/60" />
       </div>
 
       {/* ============================================
@@ -79,23 +79,32 @@ export default function Hero({ onExplore }: HeroProps) {
             satisfaction garantie.
           </motion.p>
 
-          {/* Boutons d'action */}
+          {/* ============================================
+              BOUTONS D'ACTION — VERSION HAUTE VISIBILITÉ
+              ============================================ */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="mt-8 flex flex-wrap gap-3"
+            className="mt-10 flex flex-wrap gap-4"
           >
+            {/* Bouton principal — Or plein avec glow */}
             <button
               onClick={onExplore}
-              className="group flex items-center gap-2 rounded-xl bg-gold-gradient px-6 py-3.5 text-sm font-bold text-base shadow-gold transition hover:brightness-110 active:scale-95"
+              className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-xl bg-gold-gradient px-7 py-4 text-base font-extrabold uppercase tracking-wide text-base shadow-[0_0_30px_rgba(212,175,55,0.5)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_45px_rgba(212,175,55,0.8)] active:scale-95"
             >
-              Explorer le catalogue
-              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+              {/* Effet de brillance animé au survol */}
+              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              <span className="relative z-10 flex items-center gap-2.5">
+                Explorer le catalogue
+                <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
+              </span>
             </button>
+
+            {/* Bouton secondaire — Contour or avec fond solide */}
             <a
               href="#contact"
-              className="rounded-xl border border-base-border bg-base-card/70 px-6 py-3.5 text-sm font-bold text-text backdrop-blur-sm transition hover:border-gold-light"
+              className="inline-flex items-center gap-2.5 rounded-xl border-2 border-gold-light bg-base/80 px-7 py-4 text-base font-extrabold uppercase tracking-wide text-gold-light backdrop-blur-md transition-all duration-300 hover:bg-gold-light hover:text-base hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] active:scale-95"
             >
               Nous contacter
             </a>
@@ -126,7 +135,7 @@ export default function Hero({ onExplore }: HeroProps) {
       </div>
 
       {/* ============================================
-          INDICATEUR DE SCROLL (optionnel)
+          INDICATEUR DE SCROLL
           ============================================ */}
       <motion.div
         initial={{ opacity: 0 }}
