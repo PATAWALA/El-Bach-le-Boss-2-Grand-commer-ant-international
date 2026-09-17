@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck, Truck, BadgeCheck, Sparkles } from "lucide-react";
 
 interface HeroProps {
@@ -10,83 +9,108 @@ interface HeroProps {
 export default function Hero({ onExplore }: HeroProps) {
   return (
     <section className="relative min-h-[90vh] overflow-hidden border-b border-[#334155]">
-      {/* IMAGE DE FOND */}
+      {/* ============================================
+          IMAGE DE FOND — Véhicule premium
+          ============================================ */}
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=90"
           alt="Véhicule premium"
           className="h-full w-full object-cover object-center"
           loading="eager"
-          fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A] via-[#0F172A]/95 to-[#0F172A]/70" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/40 to-[#0F172A]/60" />
+        {/* Overlay gauche → texte lisible */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, #0F172A 0%, rgba(15,23,42,0.95) 40%, rgba(15,23,42,0.7) 100%)",
+          }}
+        />
+        {/* Overlay vertical → fondu haut/bas */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to top, #0F172A 0%, rgba(15,23,42,0.3) 50%, rgba(15,23,42,0.6) 100%)",
+          }}
+        />
       </div>
 
-      {/* HALOS DÉCORATIFS */}
-      <div className="pointer-events-none absolute -top-40 left-1/3 h-96 w-[800px] -translate-x-1/2 rounded-full bg-[#D4AF37]/10 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[#B8860B]/10 blur-3xl" />
+      {/* ============================================
+          HALOS OR DÉCORATIFS
+          ============================================ */}
+      <div
+        className="pointer-events-none absolute -top-40 left-1/3 h-96 w-[800px] -translate-x-1/2 rounded-full blur-3xl"
+        style={{ backgroundColor: "rgba(212, 175, 55, 0.1)" }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full blur-3xl"
+        style={{ backgroundColor: "rgba(184, 134, 11, 0.1)" }}
+      />
 
-      {/* CONTENU */}
+      {/* ============================================
+          CONTENU — Animations CSS pures (Framer Motion retiré pour la fiabilité)
+          ============================================ */}
       <div className="relative mx-auto flex min-h-[90vh] max-w-7xl items-center px-4 py-20 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="max-w-3xl"
-        >
+        <div className="max-w-3xl animate-[heroFadeIn_0.8s_ease-out_both]">
           {/* Badge qualité */}
-          <motion.span
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#D4AF37] backdrop-blur-sm"
+          <span
+            className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-widest backdrop-blur-sm"
+            style={{
+              borderColor: "rgba(212, 175, 55, 0.4)",
+              backgroundColor: "rgba(212, 175, 55, 0.1)",
+              color: "#D4AF37",
+            }}
           >
             <Sparkles className="h-3.5 w-3.5" />
             Qualité vérifiée & garantie
-          </motion.span>
+          </span>
 
-          {/* Titre */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="mt-6 text-4xl font-black leading-[1.1] text-[#F8FAFC] sm:text-5xl lg:text-6xl xl:text-7xl"
+          {/* Titre principal */}
+          <h1
+            className="mt-6 text-4xl font-black leading-[1.1] sm:text-5xl lg:text-6xl xl:text-7xl"
+            style={{ color: "#F8FAFC" }}
           >
             Votre prochain véhicule,
-            <span className="mt-2 block bg-gradient-to-r from-[#996515] via-[#D4AF37] to-[#996515] bg-clip-text text-transparent">
+            <span
+              className="mt-2 block bg-clip-text text-transparent"
+              style={{
+                backgroundImage:
+                  "linear-gradient(120deg, #996515 0%, #D4AF37 30%, #FFF3B0 50%, #D4AF37 70%, #996515 100%)",
+                backgroundSize: "200% auto",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
               livré sans compromis.
             </span>
-          </motion.h1>
+          </h1>
 
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="mt-6 max-w-2xl text-base leading-relaxed text-[#94A3B8] sm:text-lg"
+          {/* Description — TEXTE FORCÉ EN BLANC VISIBLE */}
+          <p
+            className="mt-6 max-w-2xl text-base leading-relaxed sm:text-lg"
+            style={{ color: "#CBD5E1" }}
           >
             El Bach le Boss 2 & Grand Commerçant International vous propose une
             sélection premium de véhicules et motos, neufs et d'occasion.
             Qualité vérifiée, prix transparents, paiement sécurisé et
             satisfaction garantie.
-          </motion.p>
+          </p>
 
-          {/* BOUTONS — COULEURS HARDCODÉES, VISIBILITÉ GARANTIE */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="mt-10 flex flex-wrap gap-4"
-          >
-            {/* Bouton principal — Or plein avec texte ARDOISE */}
+          {/* ============================================
+              BOUTONS — VISIBILITÉ GARANTIE
+              ============================================ */}
+          <div className="mt-10 flex flex-wrap gap-4">
+            {/* Bouton principal — Or plein */}
             <button
               onClick={onExplore}
-              className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-xl px-7 py-4 text-base font-extrabold uppercase tracking-wide shadow-[0_0_30px_rgba(212,175,55,0.5)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_45px_rgba(212,175,55,0.8)] active:scale-95"
+              className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-xl px-7 py-4 text-base font-extrabold uppercase tracking-wide transition-all duration-300 hover:scale-[1.03] active:scale-95"
               style={{
                 backgroundImage:
                   "linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #996515 100%)",
                 color: "#0F172A",
+                boxShadow: "0 0 30px rgba(212, 175, 55, 0.5)",
               }}
             >
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
@@ -96,27 +120,28 @@ export default function Hero({ onExplore }: HeroProps) {
               </span>
             </button>
 
-            {/* Bouton secondaire — Contour or + texte or sur fond ardoise */}
+            {/* Bouton secondaire — Contour or */}
             <a
               href="#contact"
-              className="inline-flex items-center gap-2.5 rounded-xl border-2 px-7 py-4 text-base font-extrabold uppercase tracking-wide backdrop-blur-md transition-all duration-300 active:scale-95"
+              className="inline-flex items-center gap-2.5 rounded-xl border-2 px-7 py-4 text-base font-extrabold uppercase tracking-wide backdrop-blur-md transition-all duration-300 hover:bg-[#D4AF37] active:scale-95"
               style={{
                 borderColor: "#D4AF37",
                 backgroundColor: "rgba(15, 23, 42, 0.85)",
                 color: "#D4AF37",
               }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "#0F172A";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "#D4AF37";
+              }}
             >
               Nous contacter
             </a>
-          </motion.div>
+          </div>
 
           {/* Trust badges */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-3"
-          >
+          <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-3">
             {[
               { icon: ShieldCheck, label: "Paiement sécurisé" },
               { icon: Truck, label: "Livraison rapide & suivie" },
@@ -124,16 +149,26 @@ export default function Hero({ onExplore }: HeroProps) {
             ].map(({ icon: Icon, label }) => (
               <div
                 key={label}
-                className="flex items-center gap-3 rounded-xl border border-[#334155] bg-[#1E293B]/60 px-4 py-3 backdrop-blur-sm"
+                className="flex items-center gap-3 rounded-xl border px-4 py-3 backdrop-blur-sm"
+                style={{
+                  borderColor: "#334155",
+                  backgroundColor: "rgba(30, 41, 59, 0.6)",
+                }}
               >
-                <Icon className="h-5 w-5 flex-shrink-0 text-[#D4AF37]" />
-                <span className="text-sm font-medium text-[#F8FAFC]">
+                <Icon
+                  className="h-5 w-5 flex-shrink-0"
+                  style={{ color: "#D4AF37" }}
+                />
+                <span
+                  className="text-sm font-medium"
+                  style={{ color: "#F8FAFC" }}
+                >
                   {label}
                 </span>
               </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
