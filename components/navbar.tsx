@@ -27,13 +27,15 @@ export default function Navbar({
         backgroundColor: "rgba(15, 23, 42, 0.85)",
       }}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-3 sm:gap-4 sm:px-6 lg:px-8">
         {/* ============================================
             LOGO — Auto Confort (AC)
+            Nom TOUJOURS visible, même sur mobile
             ============================================ */}
-        <div className="flex items-center gap-3">
+        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+          {/* Carré or avec "AC" */}
           <div
-            className="flex h-10 w-10 items-center justify-center rounded-xl"
+            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl sm:h-10 sm:w-10"
             style={{
               backgroundImage:
                 "linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #996515 100%)",
@@ -41,21 +43,23 @@ export default function Navbar({
             }}
           >
             <span
-              className="text-lg font-black"
+              className="text-sm font-black sm:text-lg"
               style={{ color: "#0F172A" }}
             >
               AC
             </span>
           </div>
-          <div className="hidden sm:block">
+
+          {/* Texte — Nom + Slogan */}
+          <div className="flex min-w-0 flex-col leading-tight">
             <p
-              className="text-sm font-bold leading-tight"
+              className="truncate text-xs font-bold sm:text-sm md:text-base"
               style={{ color: "#F8FAFC" }}
             >
               Auto Confort
             </p>
             <p
-              className="text-[10px] uppercase tracking-widest"
+              className="hidden truncate text-[10px] uppercase tracking-widest sm:block"
               style={{ color: "#D4AF37" }}
             >
               Véhicules & Motos de Qualité
@@ -97,11 +101,11 @@ export default function Navbar({
         {/* ============================================
             ACTIONS — Panier + Menu mobile
             ============================================ */}
-        <div className="flex items-center gap-2">
+        <div className="flex flex-shrink-0 items-center gap-2">
           {/* Bouton panier */}
           <button
             onClick={onCartClick}
-            className="relative flex h-10 w-10 items-center justify-center rounded-xl border transition hover:border-[#D4AF37]"
+            className="relative flex h-9 w-9 items-center justify-center rounded-xl border transition hover:border-[#D4AF37] sm:h-10 sm:w-10"
             style={{
               borderColor: "#334155",
               backgroundColor: "#1E293B",
@@ -109,7 +113,7 @@ export default function Navbar({
             aria-label="Ouvrir le panier"
           >
             <ShoppingCart
-              className="h-5 w-5"
+              className="h-4 w-4 sm:h-5 sm:w-5"
               style={{ color: "#F8FAFC" }}
             />
             <AnimatePresence>
@@ -135,7 +139,7 @@ export default function Navbar({
           {/* Bouton menu mobile */}
           <button
             onClick={() => setMobileOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center rounded-xl border transition md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-xl border transition sm:h-10 sm:w-10 md:hidden"
             style={{
               borderColor: "#334155",
               backgroundColor: "#1E293B",
@@ -143,16 +147,22 @@ export default function Navbar({
             aria-label="Menu"
           >
             {mobileOpen ? (
-              <X className="h-5 w-5" style={{ color: "#F8FAFC" }} />
+              <X
+                className="h-4 w-4 sm:h-5 sm:w-5"
+                style={{ color: "#F8FAFC" }}
+              />
             ) : (
-              <Menu className="h-5 w-5" style={{ color: "#F8FAFC" }} />
+              <Menu
+                className="h-4 w-4 sm:h-5 sm:w-5"
+                style={{ color: "#F8FAFC" }}
+              />
             )}
           </button>
         </div>
       </div>
 
       {/* ============================================
-          RECHERCHE MOBILE
+          RECHERCHE MOBILE (dépliable)
           ============================================ */}
       <AnimatePresence>
         {mobileOpen && (

@@ -8,6 +8,7 @@ import Hero from "@/components/hero";
 import Filters from "@/components/filters";
 import ProductCard from "@/components/product-card";
 import CartDrawer from "@/components/cart-drawer";
+import Footer from "@/components/footer";
 import { products } from "@/data/products";
 import { Product, CartItem, ProductCategory } from "@/types/product";
 import { formatFCFA } from "@/lib/utils";
@@ -80,7 +81,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen" style={{ backgroundColor: "#0F172A" }}>
-      {/* NAVBAR */}
+      {/* ============================================
+          NAVBAR
+          ============================================ */}
       <Navbar
         cartCount={cartCount}
         onCartClick={() => setCartOpen(true)}
@@ -88,10 +91,14 @@ export default function Home() {
         onSearchChange={setSearch}
       />
 
-      {/* HERO */}
+      {/* ============================================
+          HERO
+          ============================================ */}
       <Hero onExplore={scrollToCatalog} />
 
-      {/* CATALOGUE */}
+      {/* ============================================
+          CATALOGUE
+          ============================================ */}
       <section
         id="catalogue"
         className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
@@ -148,104 +155,13 @@ export default function Home() {
       </section>
 
       {/* ============================================
-          FOOTER — Auto Confort
+          FOOTER — Composant séparé
           ============================================ */}
-      <footer
-        id="contact"
-        className="border-t"
-        style={{
-          borderColor: "#334155",
-          backgroundColor: "rgba(30, 41, 59, 0.4)",
-        }}
-      >
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="grid gap-8 md:grid-cols-3">
-            {/* Colonne 1 — Marque */}
-            <div>
-              <div className="flex items-center gap-3">
-                <div
-                  className="flex h-10 w-10 items-center justify-center rounded-xl"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #996515 100%)",
-                  }}
-                >
-                  <span
-                    className="text-lg font-black"
-                    style={{ color: "#0F172A" }}
-                  >
-                    AC
-                  </span>
-                </div>
-                <div>
-                  <h3
-                    className="text-lg font-bold leading-tight"
-                    style={{ color: "#F8FAFC" }}
-                  >
-                    Auto Confort
-                  </h3>
-                  <p
-                    className="text-[10px] uppercase tracking-widest"
-                    style={{ color: "#D4AF37" }}
-                  >
-                    Véhicules & Motos de Qualité
-                  </p>
-                </div>
-              </div>
-              <p className="mt-4 text-sm" style={{ color: "#94A3B8" }}>
-                Vente de véhicules et motos de qualité supérieure, neufs et
-                d'occasion. Confiance, transparence et satisfaction garantie.
-              </p>
-            </div>
+      <Footer />
 
-            {/* Colonne 2 — Contact */}
-            <div>
-              <h4
-                className="text-sm font-bold uppercase tracking-wider"
-                style={{ color: "#D4AF37" }}
-              >
-                Contact
-              </h4>
-              <ul
-                className="mt-4 space-y-2 text-sm"
-                style={{ color: "#94A3B8" }}
-              >
-                <li>📞 +226 70 00 00 00</li>
-                <li>✉️ contact@autoconfort.com</li>
-                <li>💬 WhatsApp disponible</li>
-              </ul>
-            </div>
-
-            {/* Colonne 3 — Horaires */}
-            <div>
-              <h4
-                className="text-sm font-bold uppercase tracking-wider"
-                style={{ color: "#D4AF37" }}
-              >
-                Horaires
-              </h4>
-              <ul
-                className="mt-4 space-y-2 text-sm"
-                style={{ color: "#94A3B8" }}
-              >
-                <li>Lun – Ven : 08h – 19h</li>
-                <li>Samedi : 09h – 17h</li>
-                <li>Dimanche : Fermé</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Copyright */}
-          <div
-            className="mt-10 border-t pt-6 text-center text-xs"
-            style={{ borderColor: "#334155", color: "#94A3B8" }}
-          >
-            © {new Date().getFullYear()} Auto Confort — Tous droits réservés.
-          </div>
-        </div>
-      </footer>
-
-      {/* PANIER LATÉRAL */}
+      {/* ============================================
+          PANIER LATÉRAL
+          ============================================ */}
       <CartDrawer
         open={cartOpen}
         onClose={() => setCartOpen(false)}
@@ -255,10 +171,13 @@ export default function Home() {
         onClear={clearCart}
       />
 
-      {/* MODAL VUE RAPIDE — ULTRA RESPONSIVE */}
+      {/* ============================================
+          MODAL VUE RAPIDE — ULTRA RESPONSIVE
+          ============================================ */}
       <AnimatePresence>
         {quickView && (
           <>
+            {/* Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -268,6 +187,7 @@ export default function Home() {
               style={{ backgroundColor: "rgba(0, 0, 0, 0.85)" }}
             />
 
+            {/* Conteneur modal centré */}
             <div className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-6">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -313,6 +233,7 @@ export default function Home() {
                       }}
                     />
 
+                    {/* Badges */}
                     <div className="absolute bottom-3 left-3 flex flex-wrap gap-2">
                       <span
                         className="rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur"
@@ -343,6 +264,7 @@ export default function Home() {
                     </div>
                   </div>
 
+                  {/* Contenu */}
                   <div className="p-4 sm:p-6 md:p-8">
                     <p
                       className="text-xs font-bold uppercase tracking-widest"
@@ -363,6 +285,7 @@ export default function Home() {
                       {quickView.description}
                     </p>
 
+                    {/* Specs */}
                     <div className="mt-5 grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-3">
                       {[
                         ["État", quickView.condition],
