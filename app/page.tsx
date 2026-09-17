@@ -20,7 +20,6 @@ export default function Home() {
   const [sort, setSort] = useState<"default" | "asc" | "desc">("default");
   const [quickView, setQuickView] = useState<Product | null>(null);
 
-  // ---------- Panier ----------
   const addToCart = (p: Product) => {
     setCart((prev) => {
       const existing = prev.find((i) => i.id === p.id);
@@ -48,7 +47,6 @@ export default function Home() {
 
   const clearCart = () => setCart([]);
 
-  // ---------- Filtrage + Tri ----------
   const filtered = useMemo(() => {
     let list = [...products];
 
@@ -79,7 +77,7 @@ export default function Home() {
       ?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <main className="min-h-screen bg-base">
+    <main className="min-h-screen bg-[#0F172A]">
       <Navbar
         cartCount={cartCount}
         onCartClick={() => setCartOpen(true)}
@@ -95,10 +93,10 @@ export default function Home() {
         className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
       >
         <div className="mb-8">
-          <h2 className="text-3xl font-black text-text sm:text-4xl">
+          <h2 className="text-3xl font-black text-[#F8FAFC] sm:text-4xl">
             Notre Catalogue
           </h2>
-          <p className="mt-2 text-text-muted">
+          <p className="mt-2 text-[#94A3B8]">
             {filtered.length} engin{filtered.length > 1 ? "s" : ""} disponible
             {filtered.length > 1 ? "s" : ""} — filtrez, comparez, commandez.
           </p>
@@ -111,7 +109,6 @@ export default function Home() {
           onSortChange={setSort}
         />
 
-        {/* Grille produits */}
         <motion.div
           layout
           className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
@@ -130,10 +127,10 @@ export default function Home() {
 
         {filtered.length === 0 && (
           <div className="mt-16 text-center">
-            <p className="text-lg font-semibold text-text">
+            <p className="text-lg font-semibold text-[#F8FAFC]">
               Aucun résultat trouvé
             </p>
-            <p className="mt-1 text-sm text-text-muted">
+            <p className="mt-1 text-sm text-[#94A3B8]">
               Essayez de modifier votre recherche ou vos filtres.
             </p>
           </div>
@@ -143,44 +140,44 @@ export default function Home() {
       {/* Footer / Contact */}
       <footer
         id="contact"
-        className="border-t border-base-border bg-base-card/40"
+        className="border-t border-[#334155] bg-[#1E293B]/40"
       >
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="grid gap-8 md:grid-cols-3">
             <div>
-              <h3 className="text-lg font-bold text-text">
+              <h3 className="text-lg font-bold text-[#F8FAFC]">
                 El Bach le Boss 2
               </h3>
-              <p className="mt-1 text-xs uppercase tracking-widest text-gold-light">
+              <p className="mt-1 text-xs uppercase tracking-widest text-[#D4AF37]">
                 Grand Commerçant International
               </p>
-              <p className="mt-4 text-sm text-text-muted">
-                Importation de véhicules et motos de qualité, de Cotonou vers
-                le Burkina Faso. Confiance, transparence, satisfaction.
+              <p className="mt-4 text-sm text-[#94A3B8]">
+                Vente de véhicules et motos de qualité supérieure, neufs et
+                d'occasion. Confiance, transparence et satisfaction garantie.
               </p>
             </div>
             <div>
-              <h4 className="text-sm font-bold uppercase tracking-wider text-gold-light">
+              <h4 className="text-sm font-bold uppercase tracking-wider text-[#D4AF37]">
                 Contact
               </h4>
-              <ul className="mt-4 space-y-2 text-sm text-text-muted">
-                <li>📍 Cotonou, Bénin</li>
-                <li>📞 +229 90 00 00 00</li>
+              <ul className="mt-4 space-y-2 text-sm text-[#94A3B8]">
+                <li>📞 +226 70 00 00 00</li>
                 <li>✉️ contact@elbachboss.com</li>
+                <li>💬 WhatsApp disponible</li>
               </ul>
             </div>
             <div>
-              <h4 className="text-sm font-bold uppercase tracking-wider text-gold-light">
+              <h4 className="text-sm font-bold uppercase tracking-wider text-[#D4AF37]">
                 Horaires
               </h4>
-              <ul className="mt-4 space-y-2 text-sm text-text-muted">
+              <ul className="mt-4 space-y-2 text-sm text-[#94A3B8]">
                 <li>Lun – Ven : 08h – 19h</li>
                 <li>Samedi : 09h – 17h</li>
                 <li>Dimanche : Fermé</li>
               </ul>
             </div>
           </div>
-          <div className="mt-10 border-t border-base-border pt-6 text-center text-xs text-text-muted">
+          <div className="mt-10 border-t border-[#334155] pt-6 text-center text-xs text-[#94A3B8]">
             © {new Date().getFullYear()} El Bach le Boss 2 — Tous droits
             réservés.
           </div>
@@ -212,7 +209,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="fixed left-1/2 top-1/2 z-[70] w-[92%] max-w-3xl -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-base-border bg-base-card shadow-card"
+              className="fixed left-1/2 top-1/2 z-[70] w-[92%] max-w-3xl -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-[#334155] bg-[#1E293B] shadow-[0_4px_24px_-8px_rgba(0,0,0,0.6)]"
             >
               <div className="relative">
                 <img
@@ -222,20 +219,20 @@ export default function Home() {
                 />
                 <button
                   onClick={() => setQuickView(null)}
-                  className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-lg border border-base-border bg-base/80 backdrop-blur transition hover:border-gold-light"
+                  className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-lg border border-[#334155] bg-[#0F172A]/80 backdrop-blur transition hover:border-[#D4AF37]"
                   aria-label="Fermer"
                 >
-                  <X className="h-4 w-4 text-text" />
+                  <X className="h-4 w-4 text-[#F8FAFC]" />
                 </button>
               </div>
               <div className="p-6">
-                <p className="text-xs uppercase tracking-widest text-gold-light">
+                <p className="text-xs uppercase tracking-widest text-[#D4AF37]">
                   {quickView.brand}
                 </p>
-                <h3 className="mt-1 text-2xl font-black text-text">
+                <h3 className="mt-1 text-2xl font-black text-[#F8FAFC]">
                   {quickView.name}
                 </h3>
-                <p className="mt-3 text-sm text-text-muted">
+                <p className="mt-3 text-sm text-[#94A3B8]">
                   {quickView.description}
                 </p>
 
@@ -250,22 +247,24 @@ export default function Home() {
                   ].map(([k, v]) => (
                     <div
                       key={k}
-                      className="rounded-lg border border-base-border bg-base px-3 py-2"
+                      className="rounded-lg border border-[#334155] bg-[#0F172A] px-3 py-2"
                     >
-                      <p className="text-[10px] uppercase tracking-wider text-text-muted">
+                      <p className="text-[10px] uppercase tracking-wider text-[#94A3B8]">
                         {k}
                       </p>
-                      <p className="text-sm font-semibold text-text">{v}</p>
+                      <p className="text-sm font-semibold text-[#F8FAFC]">
+                        {v}
+                      </p>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-6 flex items-center justify-between border-t border-base-border pt-5">
+                <div className="mt-6 flex items-center justify-between border-t border-[#334155] pt-5">
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-text-muted">
+                    <p className="text-[10px] uppercase tracking-wider text-[#94A3B8]">
                       Prix
                     </p>
-                    <p className="text-2xl font-extrabold text-gold-light">
+                    <p className="text-2xl font-extrabold text-[#D4AF37]">
                       {formatFCFA(quickView.price)}
                     </p>
                   </div>
@@ -274,7 +273,12 @@ export default function Home() {
                       addToCart(quickView);
                       setQuickView(null);
                     }}
-                    className="rounded-xl bg-gold-gradient px-5 py-3 text-sm font-bold text-base shadow-gold transition hover:brightness-110 active:scale-95"
+                    className="rounded-xl px-5 py-3 text-sm font-bold shadow-[0_8px_32px_-8px_rgba(212,175,55,0.45)] transition hover:brightness-110 active:scale-95"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #996515 100%)",
+                      color: "#0F172A",
+                    }}
                   >
                     Ajouter au panier
                   </button>

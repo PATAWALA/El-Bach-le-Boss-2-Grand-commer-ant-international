@@ -74,22 +74,24 @@ export default function CartDrawer({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 z-50 flex h-full w-full max-w-md flex-col border-l border-base-border bg-base"
+            className="fixed right-0 top-0 z-50 flex h-full w-full max-w-md flex-col border-l border-[#334155] bg-[#0F172A]"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-base-border p-5">
+            <div className="flex items-center justify-between border-b border-[#334155] p-5">
               <div>
-                <h2 className="text-lg font-bold text-text">Ma Sélection</h2>
-                <p className="text-xs text-text-muted">
+                <h2 className="text-lg font-bold text-[#F8FAFC]">
+                  Ma Sélection
+                </h2>
+                <p className="text-xs text-[#94A3B8]">
                   {items.length} article{items.length > 1 ? "s" : ""}
                 </p>
               </div>
               <button
                 onClick={onClose}
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-base-border bg-base-card transition hover:border-gold-light"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#334155] bg-[#1E293B] transition hover:border-[#D4AF37]"
                 aria-label="Fermer"
               >
-                <X className="h-4 w-4 text-text" />
+                <X className="h-4 w-4 text-[#F8FAFC]" />
               </button>
             </div>
 
@@ -97,13 +99,13 @@ export default function CartDrawer({
             <div className="flex-1 overflow-y-auto p-5">
               {items.length === 0 ? (
                 <div className="flex h-full flex-col items-center justify-center text-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-base-border bg-base-card">
-                    <Trash2 className="h-6 w-6 text-text-muted" />
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[#334155] bg-[#1E293B]">
+                    <Trash2 className="h-6 w-6 text-[#94A3B8]" />
                   </div>
-                  <p className="mt-4 text-sm font-semibold text-text">
+                  <p className="mt-4 text-sm font-semibold text-[#F8FAFC]">
                     Votre sélection est vide
                   </p>
-                  <p className="mt-1 text-xs text-text-muted">
+                  <p className="mt-1 text-xs text-[#94A3B8]">
                     Ajoutez des véhicules ou motos pour commander.
                   </p>
                 </div>
@@ -116,7 +118,7 @@ export default function CartDrawer({
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 20 }}
-                      className="flex gap-3 rounded-xl border border-base-border bg-base-card p-3"
+                      className="flex gap-3 rounded-xl border border-[#334155] bg-[#1E293B] p-3"
                     >
                       <img
                         src={item.image}
@@ -126,16 +128,16 @@ export default function CartDrawer({
                       <div className="flex flex-1 flex-col">
                         <div className="flex items-start justify-between gap-2">
                           <div>
-                            <p className="text-[10px] uppercase tracking-wider text-gold-light">
+                            <p className="text-[10px] uppercase tracking-wider text-[#D4AF37]">
                               {item.brand}
                             </p>
-                            <p className="line-clamp-1 text-sm font-bold text-text">
+                            <p className="line-clamp-1 text-sm font-bold text-[#F8FAFC]">
                               {item.name}
                             </p>
                           </div>
                           <button
                             onClick={() => onRemove(item.id)}
-                            className="text-text-muted transition hover:text-rose-400"
+                            className="text-[#94A3B8] transition hover:text-rose-400"
                             aria-label="Retirer"
                           >
                             <Trash2 className="h-4 w-4" />
@@ -143,26 +145,26 @@ export default function CartDrawer({
                         </div>
 
                         <div className="mt-auto flex items-center justify-between pt-2">
-                          <div className="flex items-center gap-2 rounded-lg border border-base-border bg-base px-2 py-1">
+                          <div className="flex items-center gap-2 rounded-lg border border-[#334155] bg-[#0F172A] px-2 py-1">
                             <button
                               onClick={() => onQty(item.id, -1)}
-                              className="text-text-muted transition hover:text-gold-light"
+                              className="text-[#94A3B8] transition hover:text-[#D4AF37]"
                               aria-label="Diminuer"
                             >
                               <Minus className="h-3 w-3" />
                             </button>
-                            <span className="min-w-4 text-center text-xs font-bold text-text">
+                            <span className="min-w-4 text-center text-xs font-bold text-[#F8FAFC]">
                               {item.quantity}
                             </span>
                             <button
                               onClick={() => onQty(item.id, 1)}
-                              className="text-text-muted transition hover:text-gold-light"
+                              className="text-[#94A3B8] transition hover:text-[#D4AF37]"
                               aria-label="Augmenter"
                             >
                               <Plus className="h-3 w-3" />
                             </button>
                           </div>
-                          <p className="text-sm font-extrabold text-gold-light">
+                          <p className="text-sm font-extrabold text-[#D4AF37]">
                             {formatFCFA(item.price * item.quantity)}
                           </p>
                         </div>
@@ -175,10 +177,10 @@ export default function CartDrawer({
 
             {/* Footer */}
             {items.length > 0 && (
-              <div className="border-t border-base-border bg-base-card/50 p-5 backdrop-blur">
+              <div className="border-t border-[#334155] bg-[#1E293B]/50 p-5 backdrop-blur">
                 <div className="mb-4 flex items-center justify-between">
-                  <span className="text-sm text-text-muted">Total</span>
-                  <span className="text-2xl font-extrabold text-gold-light">
+                  <span className="text-sm text-[#94A3B8]">Total</span>
+                  <span className="text-2xl font-extrabold text-[#D4AF37]">
                     {formatFCFA(total)}
                   </span>
                 </div>
@@ -187,7 +189,12 @@ export default function CartDrawer({
                   href={buildWhatsAppLink()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-gold-gradient py-3.5 text-sm font-bold text-base shadow-gold transition hover:brightness-110 active:scale-[0.98]"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-sm font-bold shadow-[0_8px_32px_-8px_rgba(212,175,55,0.45)] transition hover:brightness-110 active:scale-[0.98]"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #996515 100%)",
+                    color: "#0F172A",
+                  }}
                 >
                   <MessageCircle className="h-4 w-4" />
                   Commander via WhatsApp
@@ -195,7 +202,7 @@ export default function CartDrawer({
 
                 <button
                   onClick={onClear}
-                  className="mt-3 w-full rounded-xl border border-base-border py-2.5 text-xs font-semibold text-text-muted transition hover:border-rose-500/50 hover:text-rose-400"
+                  className="mt-3 w-full rounded-xl border border-[#334155] py-2.5 text-xs font-semibold text-[#94A3B8] transition hover:border-rose-500/50 hover:text-rose-400"
                 >
                   Vider la sélection
                 </button>

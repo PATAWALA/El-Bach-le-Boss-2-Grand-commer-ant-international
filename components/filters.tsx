@@ -40,17 +40,19 @@ export default function Filters({
               onClick={() => onChange(key)}
               className={`relative flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold transition ${
                 isActive
-                  ? "border-transparent text-base"
-                  : "border-base-border bg-base-card text-text-muted hover:border-gold-light/50 hover:text-text"
+                  ? "border-transparent"
+                  : "border-[#334155] bg-[#1E293B] text-[#94A3B8] hover:border-[#D4AF37]/50 hover:text-[#F8FAFC]"
               }`}
+              style={
+                isActive
+                  ? {
+                      backgroundImage:
+                        "linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #996515 100%)",
+                      color: "#0F172A",
+                    }
+                  : undefined
+              }
             >
-              {isActive && (
-                <motion.span
-                  layoutId="filter-pill"
-                  className="absolute inset-0 rounded-xl bg-gold-gradient shadow-gold"
-                  transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                />
-              )}
               <Icon className="relative z-10 h-4 w-4" />
               <span className="relative z-10">{label}</span>
             </button>
@@ -64,7 +66,7 @@ export default function Filters({
         onChange={(e) =>
           onSortChange(e.target.value as "default" | "asc" | "desc")
         }
-        className="rounded-xl border border-base-border bg-base-card px-4 py-2.5 text-sm font-semibold text-text outline-none transition focus:border-gold-light"
+        className="rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-sm font-semibold text-[#F8FAFC] outline-none transition focus:border-[#D4AF37]"
       >
         <option value="default">Tri par défaut</option>
         <option value="asc">Prix croissant</option>

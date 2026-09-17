@@ -4,15 +4,17 @@
    THEME PERSONNALISÉ — El Bach le Boss 2
    ============================================ */
 @theme {
-  /* Couleurs */
+  /* Couleurs de base */
   --color-base: #0f172a;
   --color-base-card: #1e293b;
   --color-base-border: #334155;
 
+  /* Couleurs or */
   --color-gold-dark: #996515;
   --color-gold: #b8860b;
   --color-gold-light: #d4af37;
 
+  /* Couleurs texte */
   --color-text: #f8fafc;
   --color-text-muted: #94a3b8;
 
@@ -36,6 +38,30 @@
     0% { opacity: 0; transform: translateY(8px); }
     100% { opacity: 1; transform: translateY(0); }
   }
+}
+
+/* ============================================
+   UTILITAIRES PERSONNALISÉS
+   ============================================ */
+@utility bg-gold-gradient {
+  background-image: linear-gradient(
+    135deg,
+    #b8860b 0%,
+    #d4af37 50%,
+    #996515 100%
+  );
+}
+
+@utility bg-gold-shine {
+  background-image: linear-gradient(
+    120deg,
+    #996515 0%,
+    #d4af37 30%,
+    #fff3b0 50%,
+    #d4af37 70%,
+    #996515 100%
+  );
+  background-size: 200% auto;
 }
 
 /* ============================================
