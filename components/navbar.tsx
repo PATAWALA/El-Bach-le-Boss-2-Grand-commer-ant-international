@@ -11,7 +11,6 @@ interface NavbarProps {
   onSearchChange: (v: string) => void;
 }
 
-// Liens de navigation communs
 const NAV_LINKS = [
   { label: "Véhicules", href: "#catalogue" },
   { label: "Terrains", href: "#terrains" },
@@ -55,22 +54,22 @@ export default function Navbar({
               className="text-sm font-black sm:text-lg"
               style={{ color: "#0F172A" }}
             >
-              AC
+              AY
             </span>
           </div>
 
           <div className="flex min-w-0 flex-col leading-tight">
             <p
-              className="truncate text-xs font-bold sm:text-sm md:text-base"
+              className="truncate text-xs font-black uppercase tracking-wide sm:text-sm md:text-base"
               style={{ color: "#F8FAFC" }}
             >
-              Auto Confort
+              ANAS YABRÉ
             </p>
             <p
               className="hidden truncate text-[10px] uppercase tracking-widest sm:block"
               style={{ color: "#D4AF37" }}
             >
-              Véhicules & Motos de Qualité
+              Grand Commerçant
             </p>
           </div>
         </div>
@@ -106,7 +105,6 @@ export default function Navbar({
 
         {/* ---------- ACTIONS ---------- */}
         <div className="flex flex-shrink-0 items-center gap-2">
-          {/* Panier */}
           <button
             onClick={onCartClick}
             className="relative flex h-9 w-9 items-center justify-center rounded-xl border transition hover:border-[#D4AF37] sm:h-10 sm:w-10"
@@ -140,7 +138,6 @@ export default function Navbar({
             </AnimatePresence>
           </button>
 
-          {/* Menu mobile */}
           <button
             onClick={() => setMobileOpen((v) => !v)}
             className="flex h-9 w-9 items-center justify-center rounded-xl border transition sm:h-10 sm:w-10 md:hidden"
@@ -193,7 +190,7 @@ export default function Navbar({
       </nav>
 
       {/* ============================================
-          MENU MOBILE — RECHERCHE + LIENS
+          MENU MOBILE
           ============================================ */}
       <AnimatePresence>
         {mobileOpen && (
@@ -205,7 +202,6 @@ export default function Navbar({
             style={{ borderColor: "#334155" }}
           >
             <div className="p-4">
-              {/* Recherche */}
               <div className="relative">
                 <Search
                   className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"
@@ -225,7 +221,6 @@ export default function Navbar({
                 />
               </div>
 
-              {/* Liens */}
               <nav className="mt-4 flex flex-col gap-1">
                 {NAV_LINKS.map((link) => (
                   <a

@@ -3,8 +3,9 @@
 import {
   ArrowRight,
   ShieldCheck,
-  Truck,
-  BadgeCheck,
+  MapPin,
+  Handshake,
+  Globe,
   Sparkles,
 } from "lucide-react";
 
@@ -63,7 +64,7 @@ export default function Hero({ onExplore }: HeroProps) {
           ============================================ */}
       <div className="relative mx-auto flex min-h-[90vh] max-w-7xl items-center px-4 py-20 sm:px-6 lg:px-8">
         <div className="max-w-3xl animate-[heroFadeIn_0.8s_ease-out_both]">
-          {/* Badge qualité */}
+          {/* Badge multi-services */}
           <span
             className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-widest backdrop-blur-sm"
             style={{
@@ -73,7 +74,7 @@ export default function Hero({ onExplore }: HeroProps) {
             }}
           >
             <Sparkles className="h-3.5 w-3.5" />
-            Qualité vérifiée & garantie
+            Véhicules • Terrains • Accompagnement
           </span>
 
           {/* Titre principal */}
@@ -81,7 +82,7 @@ export default function Hero({ onExplore }: HeroProps) {
             className="mt-6 text-4xl font-black leading-[1.1] sm:text-5xl lg:text-6xl xl:text-7xl"
             style={{ color: "#F8FAFC" }}
           >
-            Votre prochain véhicule,
+            Vos projets,
             <span
               className="mt-2 block bg-clip-text text-transparent"
               style={{
@@ -92,18 +93,20 @@ export default function Hero({ onExplore }: HeroProps) {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              livré sans compromis.
+              entre de bonnes mains.
             </span>
           </h1>
 
-          {/* Description — TEXTE FORCÉ VISIBLE */}
+          {/* Description */}
           <p
             className="mt-6 max-w-2xl text-base leading-relaxed sm:text-lg"
             style={{ color: "#CBD5E1" }}
           >
-            Auto Confort vous propose une sélection premium de véhicules et
-            motos, neufs et d'occasion. Qualité vérifiée, prix transparents,
-            paiement sécurisé et satisfaction garantie.
+            <strong style={{ color: "#F8FAFC" }}>ANAS YABRÉ</strong>, Grand
+            Commerçant, vous accompagne dans l'achat de véhicules et motos,
+            l'acquisition de terrains et vos investissements immobiliers.
+            Qualité vérifiée, prix transparents et accompagnement sur-mesure
+            partout en Europe et en Afrique de l'Ouest.
           </p>
 
           {/* ============================================
@@ -152,13 +155,14 @@ export default function Hero({ onExplore }: HeroProps) {
           </div>
 
           {/* ============================================
-              TRUST BADGES
+              TRUST BADGES — 4 services clés
               ============================================ */}
-          <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: ShieldCheck, label: "Paiement sécurisé" },
-              { icon: Truck, label: "Livraison rapide & suivie" },
-              { icon: BadgeCheck, label: "Véhicules vérifiés" },
+              { icon: ShieldCheck, label: "Qualité vérifiée" },
+              { icon: MapPin, label: "Terrains disponibles" },
+              { icon: Handshake, label: "Accompagnement" },
+              { icon: Globe, label: "International" },
             ].map(({ icon: Icon, label }) => (
               <div
                 key={label}
@@ -180,6 +184,42 @@ export default function Hero({ onExplore }: HeroProps) {
                 </span>
               </div>
             ))}
+          </div>
+
+          {/* ============================================
+              DRAPEAUX — Zones d'intervention
+              ============================================ */}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <span
+              className="text-xs font-semibold uppercase tracking-widest"
+              style={{ color: "#94A3B8" }}
+            >
+              Présents en :
+            </span>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { flag: "🇫🇷", name: "France" },
+                { flag: "🇪🇺", name: "UE" },
+                { flag: "🇧🇫", name: "Burkina Faso" },
+                { flag: "🇲🇱", name: "Mali" },
+                { flag: "🇨🇮", name: "Côte d'Ivoire" },
+                { flag: "🇸🇳", name: "Sénégal" },
+              ].map((z) => (
+                <span
+                  key={z.name}
+                  className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold backdrop-blur-sm"
+                  style={{
+                    borderColor: "rgba(212, 175, 55, 0.3)",
+                    backgroundColor: "rgba(30, 41, 59, 0.5)",
+                    color: "#F8FAFC",
+                  }}
+                  title={z.name}
+                >
+                  <span className="text-base leading-none">{z.flag}</span>
+                  <span className="hidden sm:inline">{z.name}</span>
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
